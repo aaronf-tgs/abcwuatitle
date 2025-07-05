@@ -1,0 +1,23 @@
+<div class="wp-background">
+  <div class="title-container">
+    <img align="middle" src="logo-abcwua.png">
+    <span class="title-text">ABC Water Utility Authority Diversion and Return Data</span>
+  </div>
+  <div class="tab-container">
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab label="Flow Data">
+        <app-diversion-flow [endDate]="endDate" (updateEndDate)="setEndDate($event)" [data]="flowData"></app-diversion-flow>
+      </mat-tab>
+      <mat-tab label="Meter Readings">
+        <app-diversion-meter [endDate]="endDate" (updateEndDate)="setEndDate($event)" [data]="meterData"></app-diversion-meter>
+      </mat-tab>
+      <mat-tab label="Volume Readings">
+        <app-diversion-volume [endDate]="endDate" (updateEndDate)="setEndDate($event)" [data]="volumeData"></app-diversion-volume>
+      </mat-tab>
+      <mat-tab label="Download Date Range">
+        <app-download></app-download>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<ngx-spinner type="ball-fall" color="rgba(0,128,237, .8)"></ngx-spinner>
