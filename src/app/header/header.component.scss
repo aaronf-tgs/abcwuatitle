@@ -1,0 +1,51 @@
+.wp-background {
+  width: 100%;
+  background-color: white;
+}
+
+.csr-container {
+  width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.logo {
+  width: 84px;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.banner {
+  position: relative;
+  top: 0px;
+  right: 15px;
+  display: inline-block;
+  background-color: white;
+  font-family: "Lato-Bold", "Lato Bold", "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 21px;
+  color: black;
+  margin: 12px 0px 0px 25px;
+}
+
+.hdr-button {
+  position: relative;
+  top: 18px;
+  right: 10px;
+  float: right;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #0080A6;
+  border-style: none;
+  color: #f3f3f3;
+  font-family: 'ArialMT', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  cursor: pointer;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}

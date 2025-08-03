@@ -1,0 +1,103 @@
+.wp-background {
+  width: 100%;
+  height: 100%;
+  background-color: #c7e8ef;
+}
+
+.auth-container{
+  background-image: url('/HOME-BKGRND.PNG');
+}
+
+.csr-container {
+  width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #c7e8ef;
+  margin-top: 0px;
+  min-height: 800px;
+
+  h4 {
+    font-size: 16px;
+  }
+
+  .search-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+
+    table label {
+      font-weight: bold;
+    }
+  }
+
+  .search-results-container {
+    padding: 30px 40px;
+  }
+
+  .search-results-empty-container {
+    padding: 30px 40px;
+    color: red;
+    font-weight: bold;
+  }
+}
+
+
+.highlight {
+  padding: 5px 30px;
+  border: 3px solid #0080A6;
+}
+
+.notice-container {
+  padding: 30px 40px;
+}
+
+
+
+amplify-authenticator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100vh;
+}
+
+.social-login-button {
+  width: 100%;
+  background-color: blue;
+  border: 0px;
+  margin-bottom: 10px;
+}
+
+.social-login-icon {
+  width: 44px;
+  height: 44px;height: 44px;
+  left: -4px;
+  position: relative;
+  float: left;
+
+  position: relative;
+  & img {
+    width: 42px;
+    height: 42px;
+    padding: 4px 2px 2px 2px;
+  }
+}
+
+.social-login-text {
+  color: white;
+  position: relative;
+  top: 9px;
+}
+
+.login-message {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.error-msg {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,313 @@
+<div class="wp-background">
+  <ng-container *ngIf="!isSignedIn">
+    <amplify-authenticator [formFields]="formFields">
+      <ng-template amplifySlot="header">
+        <div style="padding: var(--amplify-space-large); text-align: center; background-color: white;">
+          <img
+            class="amplify-image"
+            alt="Amplify logo"
+            src="logo-abcwua.png"
+          />
+        </div>
+      </ng-template>
+
+      <ng-template amplifySlot="sign-in-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Sign in to your account
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="sign-in-footer">
+        <div style="text-align: center">
+          <button
+            (click)="authenticator.toForgotPassword()"
+            class="amplify-button amplify-field-group__control"
+            data-fullwidth="false"
+            data-size="small"
+            data-variation="link"
+            type="button"
+            style="font-weight: normal"
+          >
+            Reset Password
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template amplifySlot="sign-up-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Create a new account
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="sign-up-footer">
+        <div style="text-align: center">
+          <button
+            (click)="authenticator.toSignIn()"
+            class="amplify-button amplify-field-group__control"
+            data-fullwidth="false"
+            data-size="small"
+            data-variation="link"
+            type="button"
+            style="font-weight: normal"
+          >
+            Back to Sign In
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template amplifySlot="footer">
+        <div style="padding: var(--amplify-space-large); text-align: center">
+          <p
+            class="amplify-text"
+            style="color: var(--amplify-colors-neutral-80)"
+          >
+            © All Rights Reserved
+          </p>
+        </div>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-sign-up-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Enter Information:
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-sign-up-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="setup-totp-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Enter Information:
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="setup-totp-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-sign-in-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Enter Information:
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-sign-in-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="forgot-password-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Enter Information:
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="forgot-password-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-reset-password-header">
+        <h3
+          class="amplify-heading"
+          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
+        >
+          Enter Information:
+        </h3>
+      </ng-template>
+
+      <ng-template amplifySlot="confirm-reset-password-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="select-mfa-type-header">
+        <h3 class="amplify-heading">Select Desired MFA Type</h3>
+      </ng-template>
+
+      <ng-template amplifySlot="select-mfa-type-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template amplifySlot="setup-email-header">
+        <h3 class="amplify-heading">Email MFA Setup</h3>
+      </ng-template>
+
+      <ng-template amplifySlot="setup-email-footer">
+        <div>Footer Information</div>
+      </ng-template>
+
+      <ng-template
+        amplifySlot="authenticated"
+        let-user="user"
+        let-signOut="signOut"
+      >
+        <h2>Authorizing, {{ user?.signInDetails?.loginId }}!</h2>
+        <button (click)="signOut()">Sign Out</button>
+      </ng-template>
+    </amplify-authenticator>
+  </ng-container>
+
+
+  <div *ngIf="isSignedIn && !isGettingUser && !isValidUser" class="login-message">
+    <span class="error-msg">You are not authorized to use the Water Authority’s Account Research Portal </span> <br>
+    <button (click)="logout()">Sign Out</button>
+  </div>
+
+  <div class="titlesearch-container" *ngIf="isValidUser">
+    <app-header></app-header>
+    <div class="csr-container">
+      <div class="search-container">
+        <table class="input">
+          <tbody>
+            <tr>
+              <td colspan=3 valign="center">
+                <h3>Search</h3>
+                Research account information by entering an Account Number or Service Address:
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="Account">Account Number (10 digits)</label>:</td>
+              <td colspan="2">
+                <input
+                  type="text"
+                  data-val="true"
+                  data-val-length="Account Number must be 10 digits"
+                  data-val-length-max="10"
+                  data-val-length-min="10"
+                  maxlength="10"
+                  placeholder="Account Number"
+                  [(ngModel)]="searchAccountId"
+                  (ngModelChange)="validateInputs()">
+
+                <button
+                  (click)="clearSearch()"
+                  class="transparent-button">X</button>
+              </td>
+              <td rowspan=3 width="10px" valign="center">
+              </td>
+              <td rowspan=2 valign="center">
+                <button
+                    (click)="search()"
+                    class="primary-button"
+                    [ngClass]="{'disabled-button': !readyToSearch}"
+                    [disabled]="!readyToSearch">SEARCH</button>
+              </td>
+              <td rowspan=3 width="10px" valign="center">
+              </td>
+              <td rowspan=3 width="300px" valign="center">
+                Should you have questions regarding the
+                information in this report, contact the Water Authority at
+                <a href="mailto:titlereq@abcwua.org">titlereq&64;abcwua.org.</a>.
+              </td>
+            </tr>
+            <tr>
+              <td><label for="Address">Service Address</label>:</td>
+              <td>
+                <input type="text" [(ngModel)]="searchStreetNumber" style="width: 100px;" placeholder="Street No.">
+              </td>
+              <td>
+                <input type="text" [(ngModel)]="searchStreetName" placeholder="Street Name" (ngModelChange)="validateInputs()">
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="search-results-container" *ngIf="accountList.length > 0">
+        <table class="search-table" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th>Account Number</th>
+              <th>Service Address</th>
+              <th align="right">Amount Due</th>
+              <th align="right">Payoff <br> Balance</th>
+              <th align="right">Last Payment <br>Amount</th>
+              <th align="right">Last Payment <br>Date</th>
+              <th>Last Bill</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of accountList">
+              <td align="center">{{a.ACCT_ID}}
+                <button class="info-button" *ngIf="a.CUR_AMT" (click)="showDetailsModal(a)">...</button>
+              </td>
+              <td align="center">{{a.ADDRESS}}</td>
+              <td align="right">{{a.CUR_AMT | currency}}</td>
+              <td align="right">{{a.TOT_AMT | currency}}</td>
+              <td align="right">{{a.LAST_PAY_AMT | currency}}</td>
+              <td align="right">{{a.LAST_PAYMENT_DATE | date:'shortDate'}}</td>
+              <td align="center">
+                <a href="{{a.LAST_BILL_URL}}"
+                  target="_blank">View</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="search-results-empty-container" *ngIf="noResults">
+        Search did not find the Account Number or Service Address entered.  Please correct and try again.
+      </div>
+
+      <div class="notice-container">
+        <div class="highlight">
+          <p>We try to provide the most up to date information on the account as possible at the time of your request.
+            Information can change at any time and additional fees and charges may apply depending on the account
+            status.
+            Please obtain the most up to date information at closing.</p>
+          <p>If additional information is needed for closing purposes, contact us at <a
+              href="mailto:titlereq@abcwua.org">titlereq&64;abcwua.org</a>. Requests will be processed within two business
+            days.</p>
+
+          <div class="split half alpha">
+            <h4>Your cooperation is requested to limit payoff requests to:</h4>
+            <ul>
+              <li>One service address request per email</li>
+              <li>Include the service address in the subject line of the email</li>
+              <li>For lien requests, include a copy of the lien for any liens filed prior to April 2009. Lien filing
+                fees
+                charged by Bernalillo County are $25.00 to file and $25.00 to release</li>
+            </ul>
+          </div>
+          <div class="split half omega">
+            <h4>Please remind our mutual customers of the following:</h4>
+            <ul>
+              <li>Contact (505)842-WATR (9287) to add/or change billing information or to cancel recurring payments
+                setup
+                on the Water Authority’s online payment system</li>
+              <li>Contact their financial institution to cancel automatic electronic online bill payments</li>
+            </ul>
+          </div>
+          <br class="clear">
+        </div>
+      </div>
+
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+<ngx-spinner type="ball-fall" color="rgba(0,128,237, .8)"></ngx-spinner>
