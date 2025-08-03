@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+.angular/cache/*
+
 # amplify
 .amplify
 amplify_outputs*
