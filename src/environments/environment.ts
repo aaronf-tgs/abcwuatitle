@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiUrl: "https://api.dev.abcwuademo.org"
-  apiUrl: "https://api.abcwua.org/"
+  // apiUrl: "https://api.abcwua.org/"
+  apiUrl: "http://localhost:3000/"
 };
 
 /*

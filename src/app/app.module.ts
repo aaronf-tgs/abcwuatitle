@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SearchModule } from './search/search.module';
+import { TokenInteceptorService } from './services/token-interceptor.service';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SearchModule } from './search/search.module';
     SearchModule,
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()), // Enable DI for interceptors
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInteceptorService, multi: true },
   ],
   bootstrap: [
     AppComponent

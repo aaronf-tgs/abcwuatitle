@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hub } from '@aws-amplify/core';
-import { fetchUserAttributes, signIn, signOut, signUp } from "aws-amplify/auth"
+import { fetchUserAttributes, signIn, signOut, signUp, fetchAuthSession } from "aws-amplify/auth"
 import { Subject, Observable } from 'rxjs';
 import { CognitoUser } from 'amazon-cognito-identity-js'
 
@@ -89,4 +89,12 @@ export class AuthService {
 					.catch((error: any) => reject(error));
 			});
 	}
+
+
+  public async getSession() {
+    const session = await fetchAuthSession();
+    return session;
+  }
+
+
 }

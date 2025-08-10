@@ -15,12 +15,14 @@ export class AwsDbService {
       };
       payload.app = "title";
       self.http.post(url, payload, options).subscribe(
-        (resp: any) => {
-          resolve(resp);
-        },
-        (err) => {
-          console.error('getAccountsForUser error', err);
-          reject(err);
+        {
+          next: (resp: any) => {
+            resolve(resp);
+          },
+          error: (err) => {
+            console.error('getUserProfile error', err);
+            reject(err);
+          }
         }
       );
     });
@@ -38,7 +40,7 @@ export class AwsDbService {
           resolve(resp);
         },
         (err) => {
-          console.error('getAccountsForUser error', err);
+          console.error('searchTitleAccount error', err);
           reject(err);
         }
       );

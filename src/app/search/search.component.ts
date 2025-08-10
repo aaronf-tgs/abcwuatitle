@@ -91,13 +91,9 @@ export class SearchComponent {
 
     Hub.listen('auth', (data) => {
       try {
-        console.log("Auth event received:", data);
         const authState = get(data, 'payload.event', '');
         const email = get(data, 'payload.data.attributes.email', '');
-
-        console.log("Login Hub.listen=" + authState);
         self.loginStatus = "Login Status: " + authState;
-
         if (authState !== "signedIn") {
           self.isSignedIn = false;
           self.isGettingUser = false;
@@ -273,8 +269,7 @@ export class SearchComponent {
     self.awsDbService.getUserProfile(payload)
       .then(resp => {
         self.isGettingUser = false;
-        let userType = get(resp, "results.0.USER_TYPE", "");
-        console.log("resp", resp);
+        let userType = get(resp, "results.USER_TYPE", "");
         if ((userType.indexOf("TITLE") > -1) || (userType.indexOf("CSR") > -1)) {
           self.isValidUser = true;
         }
