@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  //apiUrl: "http://backend-2025-demo.eba-mn2sspi3.us-west-2.elasticbeanstalk.com/"
   apiUrl: "http://localhost:3000/"
 };
 
