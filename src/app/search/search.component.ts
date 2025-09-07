@@ -257,10 +257,10 @@ export class SearchComponent {
   getUserProfile(email:string, firstName:string, lastName:string) {
     var self = this;
     let payload = {
-      'EMAIL': email.trim(),
+      'EMAIL': email.trim().toLowerCase(),
       'NAME_FIRST': firstName,
       'NAME_LAST': lastName,
-      'email': email.trim(),
+      'email': email.trim().toLowerCase(),
       'phone': "",
       'firstName': firstName,
       'lastName': lastName

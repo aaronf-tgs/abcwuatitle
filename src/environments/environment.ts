@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiUrl: "https://api.dev.abcwuademo.org"
-  // apiUrl: "https://api.abcwua.org/"
+  //apiUrl: "http://backend-2025-demo.eba-mn2sspi3.us-west-2.elasticbeanstalk.com/"
   apiUrl: "http://localhost:3000/"
 };
 
