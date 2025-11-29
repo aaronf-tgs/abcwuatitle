@@ -118,8 +118,6 @@ export class SearchComponent {
   }
 
 
-
-
   initCognito() {
     // this.signUpFormFields = [
     //   {

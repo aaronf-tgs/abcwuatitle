@@ -55,7 +55,12 @@ export class AuthService {
 
 	signIn(username: string, password: string): Promise<CognitoUser | any> {
 		return new Promise((resolve, reject) => {
-			signIn({ "username": username, "password": password })
+      const payload = {
+        username,
+        password,
+        authFlowType: "USER_PASSWORD_AUTH"
+      };
+			signIn(payload)
 				.then((user: CognitoUser | any) => {
 					this.loggedIn = true;
 					resolve(user);
@@ -68,13 +73,6 @@ export class AuthService {
 	signOut(): Promise<any> {
 		return signOut();
 	}
-
-
-	// socialSignIn(provider: CognitoHostedUIIdentityProvider): Promise<ICredentials> {
-	// 	return Auth.federatedSignIn({
-	// 		'provider': provider
-	// 	});
-	// }
 
 
 	getUserDetails(userObj: CognitoUser) {

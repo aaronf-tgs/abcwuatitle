@@ -7,19 +7,26 @@ const awsmobile = {
     "aws_cognito_region": "us-west-2",
     "aws_user_pools_id": "us-west-2_yhftlq5Bz",
     "aws_user_pools_web_client_id": "592v8oiq0s1n7j8e1j648i3kgc",
-    "oauth": {
-        "domain": "abcwuaui52f90959-52f90959-prod.auth.us-west-2.amazoncognito.com",
-        "scope": [
-            "email",
-            "openid",
-            "profile",
-            "aws.cognito.signin.user.admin"
-        ],
-        "redirectSignIn": "https://account.abcwua.org/",
-        "redirectSignOut": "https://www.abcwua.org/",
-        "responseType": "code"
+    "oauth": {},
+    "aws_cognito_username_attributes": [
+        "EMAIL"
+    ],
+    "aws_cognito_social_providers": [],
+    "aws_cognito_signup_attributes": [
+        "EMAIL"
+    ],
+    "aws_cognito_mfa_configuration": "OFF",
+    "aws_cognito_mfa_types": [
+        "SMS"
+    ],
+    "aws_cognito_password_protection_settings": {
+        "passwordPolicyMinLength": 8,
+        "passwordPolicyCharacters": []
     },
-    "federationTarget": "COGNITO_USER_AND_IDENTITY_POOLS"
+    "aws_cognito_verification_mechanisms": [
+        "EMAIL"
+    ],
+    "authenticationFlowType": "USER_PASSWORD_AUTH"
 };
 
 
