@@ -1,1 +1,125 @@
-<p>account-details works!</p>
+<div class="details-container">
+
+  <div class="modal-header ngb-modal-header">
+    <h4 class="modal-title">Account Number {{context.ACCT_ID}} Details</h4>
+  </div>
+  <div class="modal-body ngb-modal-body">
+
+    <table class="detail-table" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <b>Service Address:</b> {{context.ADDRESS}}<br>
+              <b>City:</b> {{context.PREMISE_CITY}}<br>
+              <b>State:</b> {{context.PREMISE_STATE}}<br>
+              <b>Zip:</b> {{context.PREMISE_POSTAL}}<br>
+              <b>Bill Cycle:</b> {{context.BILL_CYC_CD}}<br>
+              <b>Customer Class:</b> {{context.CUSTOMER_CLASS}} <br>
+            </p>
+            <p>
+              <b>Amount Due: </b> {{context.CUR_AMT | currency}}<br>
+              <b>Payoff Balance: </b> {{context.TOT_AMT | currency}}<br>
+              <b>Last Payment Amount: </b>{{context.LAST_PAY_AMT | currency}}<br>
+              <b>Last Payment Date: </b>{{context.LAST_PAY_DT | date:'shortDate'}}<br>
+              <b>Last Bill: </b>
+                  <a href="{{context.LAST_BILL_URL}}" target="_blank"><span class="view-button">View</span></a>
+              <br>
+            </p>
+          </td>
+          <td>
+            <p>
+              <b>Auto Pay:</b> {{context.AUTOPAY_FLAG}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="0"
+                oldtitle="If an auto pay record is ACTIVE, the owner or title representative must contact the customer service department at 505-842-9287 to initiate cancellation to prevent future bank drafts from previous owner’s bank account."
+                title=""> -->
+              <br>
+              <b>Budget Billing:</b> {{context.BUDGET_FLAG}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="1"
+                oldtitle="If budget billing is ACTIVE, the owner or title representative must contact the customer service department at 505-842-9287 to initiate cancellation. Additional charges may be applied to the account once budget billing is canceled depending on usage and previous years budgeted amount."
+                title=""> -->
+              <br>
+              <b>e-Bill:</b> {{context.EBILL_FLAG}}<br>
+              <b>Pending Refund:</b> {{context.PENDING_REFUND_FLAG}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="2"
+                oldtitle="If there is a pending refund request on this account,please email titlereq@abcwua.org or call 505-842-9287 for more details on the refund."
+                title=""> -->
+              <br>
+              <b>Lien:</b> {{context.LIEN_FLAG}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="3"
+                oldtitle="Lien (including lien file and doc #) will be released upon balance being paid in full. Lien filing fees charged by Bernalillo County are $25.00 to file and $25.00 to release. Please allow 7 to 10 business days for the release of lien to be recorded. Liens older than April 2009 may not be available in this view. Please confirm all lien data with the Bernalillo County Clerk’s Office at (505) 468-1290. "
+                title=""> -->
+              <br>
+              <b>Pending Billable Charges:</b> {{context.BCHG_AMT}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="4"
+                oldtitle="These charges will reflect on the next bill." title=""> -->
+              <br>
+              <b>Water UEC balance:</b> {{context.UEC_WT_PAYOFF | currency}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="5"
+                oldtitle="Payments for UEC’s must be submitted in a separate check than the regular payoff. Please include account number and a note specifying payoff is for UEC’s or regular payoff. Interest charges may be included up to the date of payoff and outstanding bills may reflect UEC charges that are part of the UEC payoff balance."
+                title=""> -->
+              <br>
+              <b>Wastewater UEC balance:</b> {{context.UEC_WW_PAYOFF | currency}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="6"
+                oldtitle="Payments for UEC’s must be submitted in a separate check than the regular payoff. Please include the account number and a note specifying payoff is for UEC’s or regular payoff. Interest charges may be included up to the date of payoff and outstanding bills may reflect UEC charges that are part of the UEC payoff balance. "
+                title=""> -->
+              <br>
+              <b>Water Service:</b> {{context.WT_SERVICE}}
+              <br>
+              <b>Wastewater Service:</b> {{context.WW_SERVICE}}
+              <!-- <img src="/Images/wua-info-title.png" class="toolTip" alt="information" data-hasqtip="7"
+                oldtitle="If property is being billed for water only and is not being billed for waste water, you must
+                call (505) 924-3920 to request a smoke test to verify or the property may be back charged penalties up to 4 years for illegal hookup."
+                title=""> -->
+              <br>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <span class="details-title">MAILING ADDRESS</span>
+    <table class="search-table" cellspacing="0" cellpadding="0">
+      <tbody>
+          <tr class="footable-even">
+              <td align="center">
+                {{context.MAILING_ADDRESS1}}
+                {{context.MAILING_CITY}}
+                {{context.MAILING_STATE}}
+                {{context.MAILING_POSTAL}}
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <span class="details-title">ARREARS SUMMARY</span>
+    <table class="search-table" cellspacing="0" cellpadding="0">
+      <thead>
+          <tr>
+              <!-- <th>As of Date</th> -->
+              <th align="right">0-30 Days</th>
+              <th align="right">31-60 Days</th>
+              <th align="right">61-90 Days</th>
+              <th align="right">Over 90 Days</th>
+              <th align="right">Total</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="footable-even">
+              <!-- <td align="center"> {{context.BILLING_DATE}}</td> -->
+              <td align="right"> {{ context.ARREARS_0_TO_30 | currency}}</td>
+              <td align="right"> {{ context.ARREARS_31_TO_60 | currency}}</td>
+              <td align="right"> {{ context.ARREARS_61_TO_90 | currency}}</td>
+              <td align="right"> {{ context.ARREARS_91_PLUS | currency}}</td>
+              <td align="right"> {{(arsTotal) | currency}}</td>
+          </tr>
+      </tbody>
+  </table>
+
+  </div>
+  <div class="modal-footer ngb-modal-footer">
+    <a href="/printPreview?act={{context.ACCT_ID}}" target="_blank">
+      <span class="primary-button">PRINT PREVIEW</span></a>
+    <button class="primary-button" (click)="closeDialog()">CLOSE</button>
+  </div>
+</div>

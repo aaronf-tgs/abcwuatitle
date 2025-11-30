@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchModule } from './search/search.module';
 import { TokenInteceptorService } from './services/token-interceptor.service';
+import { PrintPreviewModule } from './print-preview/print-preview.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TokenInteceptorService } from './services/token-interceptor.service';
     BrowserModule,
     BrowserAnimationsModule,
     SearchModule,
+    PrintPreviewModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()), // Enable DI for interceptors

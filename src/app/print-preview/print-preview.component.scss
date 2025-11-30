@@ -1,0 +1,49 @@
+
+.preview-container {
+  font-size: 20px;
+  margin: 40px;
+
+  & .preview-header {
+    padding: 10px;
+
+    & .preview-title {
+      font-size: 24px;
+    }
+  }
+
+  & .preview-body {
+
+    & .details-title {
+      padding-top: 60px;
+    }
+
+    & .detail-table {
+      width: 100%;
+    }
+
+    & .arrears-table {
+      width: 40%;
+    }
+  }
+
+  & .print-footer{
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid black;
+
+    & .date-field {
+      float: right;
+    }
+  }
+
+}
+
+
+.print-btn {
+  margin: 10px;
+}
+@media print {
+  .print-btn {
+    display: hidden;
+  }
+}

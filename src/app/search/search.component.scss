@@ -32,6 +32,12 @@
 
   .search-results-container {
     padding: 30px 40px;
+
+
+    .search-table th,td {
+      border: 2px solid black;
+      padding: 4px;
+    }
   }
 
   .search-results-empty-container {
