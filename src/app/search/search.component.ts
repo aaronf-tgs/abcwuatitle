@@ -81,10 +81,14 @@ export class SearchComponent {
 
   ngOnInit(): void {
     var self = this;
+    if (self.isValidUser === true) {
+      // no need to check user again
+      return;
+    }
     fetchUserAttributes()
       .then((userAttributes) => {
         console.log("User attributes fetched:", userAttributes);
-        var email = get(userAttributes, 'email', );
+        var email = get(userAttributes, 'email', '');
         var firstName = get(userAttributes, 'given_name', '');
         var lastName = get(userAttributes, 'family_name', '');
         if (email) {
@@ -112,6 +116,7 @@ export class SearchComponent {
         const email = get(data, 'payload.data.attributes.email', '');
         self.loginStatus = "Login Status: " + authState;
         if (authState !== "signedIn") {
+          console.log("Hub.listen: User signed out or not signed in");
           self.isSignedIn = false;
           self.isGettingUser = false;
           self.isValidUser = false;
@@ -139,6 +144,8 @@ export class SearchComponent {
     var self = this;
     self.noResults = false;
     if (self.searchAccountId) {
+      self.searchStreetName = '';
+      self.searchStreetNumber = '';
       self.searchByAccountId();
     }
     else if (self.searchStreetName) {
@@ -305,6 +312,7 @@ export class SearchComponent {
     self.searchAccountId = "";
     self.searchStreetNumber = "";
     self.searchStreetName = "";
+    self.readyToSearch = false;
     self.ref.detectChanges();
   }
 
