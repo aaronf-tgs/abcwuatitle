@@ -1,6 +1,6 @@
 <div class="wp-background">
   <ng-container *ngIf="!isSignedIn">
-    <amplify-authenticator [formFields]="formFields">
+    <amplify-authenticator [services]="services">
       <ng-template amplifySlot="header">
         <div style="padding: var(--amplify-space-large); text-align: center; background-color: white;">
           <img
@@ -85,19 +85,6 @@
         <div>Footer Information</div>
       </ng-template>
 
-      <ng-template amplifySlot="setup-totp-header">
-        <h3
-          class="amplify-heading"
-          style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
-        >
-          Enter Information:
-        </h3>
-      </ng-template>
-
-      <ng-template amplifySlot="setup-totp-footer">
-        <div>Footer Information</div>
-      </ng-template>
-
       <ng-template amplifySlot="confirm-sign-in-header">
         <h3
           class="amplify-heading"
@@ -137,22 +124,6 @@
         <div>Footer Information</div>
       </ng-template>
 
-      <ng-template amplifySlot="select-mfa-type-header">
-        <h3 class="amplify-heading">Select Desired MFA Type</h3>
-      </ng-template>
-
-      <ng-template amplifySlot="select-mfa-type-footer">
-        <div>Footer Information</div>
-      </ng-template>
-
-      <ng-template amplifySlot="setup-email-header">
-        <h3 class="amplify-heading">Email MFA Setup</h3>
-      </ng-template>
-
-      <ng-template amplifySlot="setup-email-footer">
-        <div>Footer Information</div>
-      </ng-template>
-
       <ng-template
         amplifySlot="authenticated"
         let-user="user"
@@ -168,6 +139,10 @@
   <div *ngIf="isSignedIn && !isGettingUser && !isValidUser" class="login-message">
     <span class="error-msg">You are not authorized to use the Water Authority’s Account Research Portal </span> <br>
     <button (click)="logout()">Sign Out</button>
+  </div>
+
+  <div *ngIf="isGettingUser" class="login-message">
+    <h2>Authorizing, {{currentUser}}!</h2>
   </div>
 
   <div class="titlesearch-container" *ngIf="isValidUser">

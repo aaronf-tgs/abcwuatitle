@@ -3,7 +3,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { get, set } from 'es-toolkit/compat';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticatorService } from '@aws-amplify/ui-angular';
-import { signOut, fetchUserAttributes } from 'aws-amplify/auth';
+import { signOut, fetchUserAttributes, signIn, SignInInput } from 'aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 import { Hub } from 'aws-amplify/utils';
 
@@ -35,7 +35,7 @@ export class SearchComponent {
   public loginStatus = "";
   public readyToSearch = false;
   public noResults = false;
-
+  public currentUser: string = "";
   public formFields = {
     signUp: {
       email: {
@@ -60,8 +60,23 @@ export class SearchComponent {
     private spinner: NgxSpinnerService
   ) {
     Amplify.configure(config);
-    this.initCognito();
   }
+
+
+  services = {
+    async handleSignIn(input: SignInInput) {
+      let { username, password, options } = input;
+      // custom username and email
+      username = username.toLowerCase();
+      return signIn({
+        username,
+        password,
+        options: {
+          authFlowType: 'USER_PASSWORD_AUTH'
+        }
+      });
+    },
+  };
 
 
   ngOnInit(): void {
@@ -73,12 +88,14 @@ export class SearchComponent {
         var firstName = get(userAttributes, 'given_name', '');
         var lastName = get(userAttributes, 'family_name', '');
         if (email) {
+          self.currentUser = email;
           self.isSignedIn = true;
           self.isGettingUser = true;
           self.isValidUser = false;
           self.ref.detectChanges();
           self.getUserProfile(email, firstName, lastName);
-        } else {
+        }
+        else {
           self.isSignedIn = false;
           self.isGettingUser = false;
           self.isValidUser = false;
@@ -115,36 +132,6 @@ export class SearchComponent {
         self.ref.detectChanges();
       }
     })
-  }
-
-
-  initCognito() {
-    // this.signUpFormFields = [
-    //   {
-    //     type: "email",
-    //     label: "Email Address",
-    //     placeholder: "Enter your email",
-    //     required: true,
-    //   },
-    //   {
-    //     type: "given_name",
-    //     label: "First Name",
-    //     placeholder: "Enter your first name",
-    //     required: true,
-    //   },
-    //   {
-    //     type: "family_name",
-    //     label: "Last Name",
-    //     placeholder: "Enter your last name",
-    //     required: true,
-    //   },
-    //   {
-    //     type: "password",
-    //     label: "Password",
-    //     placeholder: "Enter your password",
-    //     required: true,
-    //   },
-    // ];
   }
 
 
