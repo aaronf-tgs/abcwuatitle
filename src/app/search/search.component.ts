@@ -24,14 +24,13 @@ import config from '../../../amplify-output.json';
   ]
 })
 export class SearchComponent {
-
   public searchAccountId = "";
   public searchStreetNumber = "";
   public searchStreetName = "";
   public accountList: any[] = [];
   public isSignedIn = false;
   public isGettingUser = false;
-  public isValidUser = true;
+  public isValidUser = false;
   public loginStatus = "";
   public readyToSearch = false;
   public noResults = false;
