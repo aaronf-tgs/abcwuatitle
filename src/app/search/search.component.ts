@@ -112,7 +112,6 @@ export class SearchComponent {
     Hub.listen('auth', (data) => {
       try {
         const authState = get(data, 'payload.event', '');
-        const email = get(data, 'payload.data.attributes.email', '');
         self.loginStatus = "Login Status: " + authState;
         if (authState !== "signedIn") {
           console.log("Hub.listen: User signed out or not signed in");
@@ -128,6 +127,10 @@ export class SearchComponent {
         self.isValidUser = false;
         self.ref.detectChanges();
 
+        let email = get(data, 'payload.data.attributes.email', '');
+        if (!email) {
+          email = get(data, 'payload.data.signInDetails.loginId', '');
+        }
         self.getUserProfile(email,"","");
       }
       catch (err) {
